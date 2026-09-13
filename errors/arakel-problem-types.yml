@@ -1,0 +1,35 @@
+generated: '2026-09-13'
+method: derived
+source: >-
+  Derived from 4xx responses in https://proof.arakelproof.space/openapi.json and
+  the live 402 challenge; enriched from /terms and /skill.md.
+name: ARAKEL Machine Evidence Network
+format: json
+format_note: >-
+  Not RFC 9457 problem+json — errors are plain application/json. The 402 also
+  carries an x402 payment-required header (base64url JSON) which is authoritative.
+problem_types:
+  - status: 402
+    title: Payment Required
+    meaning: >-
+      A paid product route was called without settled payment. Body/header carry an
+      x402 v2 challenge (scheme exact, network eip155:8453, USDC asset, payTo, amount).
+    action: Settle the x402 challenge with a signed USDC transfer on Base, then retry.
+  - status: 409
+    title: Payment not recommended
+    meaning: >-
+      Free preflight predicted the paid call is not worth making
+      (payment_recommended=false), so the paid route declines to charge.
+    action: Do not pay; treat the preflight result as the answer.
+  - status: 409
+    title: NOT_OBSERVED not currently provable
+    meaning: Coverage is insufficient to prove a NOT_OBSERVED verdict.
+    action: Widen the time window or re-check coverage before requesting the proof.
+  - status: 409
+    title: One or more items are inconclusive
+    meaning: A batch check contains items whose verdict would be INCONCLUSIVE.
+    action: Remove/adjust inconclusive items; agents are instructed not to pay for INCONCLUSIVE.
+verdicts:
+  - OBSERVED
+  - NOT_OBSERVED
+  - INCONCLUSIVE

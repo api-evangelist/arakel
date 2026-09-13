@@ -1,0 +1,35 @@
+overlay: 1.0.0
+info:
+  title: ARAKEL Machine Evidence Network — API Evangelist enrichment overlay
+  version: 1.0.0
+extends: ../openapi/arakel-openapi.json
+x-provenance:
+  generated: '2026-09-13'
+  method: generated
+  source: >-
+    Captures API Evangelist enrichment annotations against the verbatim ARAKEL
+    OpenAPI 3.1.0 (info.version 0.10.2). The original spec is never mutated.
+actions:
+  - target: $.info
+    description: Annotate the identity-free, x402 payment-gated auth model.
+    update:
+      x-auth-model: payment-gated-x402
+      x-payment-network: eip155:8453
+      x-payment-asset: USDC
+  - target: $.info
+    description: Note the free-preflight-then-pay convention.
+    update:
+      x-convention: preflight-then-pay
+      x-verdicts: [OBSERVED, NOT_OBSERVED, INCONCLUSIVE]
+  - target: "$.paths['/v1/ofac-sanctions-screening'].get"
+    description: Flag paid execution and its free preflight.
+    update:
+      x-paid: true
+      x-price-usd: 0.005
+      x-preflight: /v1/machine/lookup-quote
+  - target: "$.paths['/v1/counterparty-government-check'].get"
+    description: Flag paid multi-source counterparty check.
+    update:
+      x-paid: true
+      x-price-usd: 0.03
+      x-preflight: /v1/machine/counterparty-check-quote

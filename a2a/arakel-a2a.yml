@@ -1,0 +1,47 @@
+generated: '2026-09-13'
+method: probed
+source: https://proof.arakelproof.space/.well-known/agent-card.json
+name: ARAKEL Machine Evidence Network
+version: 0.10.2
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: proof.arakelproof.space
+x-evidence:
+  fetched: '2026-09-13'
+  url: https://proof.arakelproof.space/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json; charset=utf-8
+transport:
+  # Newer A2A card shape: supportedInterfaces[] instead of top-level url + preferredTransport
+  interfaces:
+    - url: https://proof.arakelproof.space/a2a
+      protocolBinding: JSONRPC
+      protocolVersion: '1.0'
+signed:
+  jws: true
+  alg: EdDSA
+  kid: arakel-agentcard-ed25519-v1
+  jwks: https://proof.arakelproof.space/.well-known/jwks.json
+skills:
+  - id: federal-register-evidence-routing
+    name: Federal Register Evidence Search
+  - id: ofac-sanctions-evidence-routing
+    name: OFAC Sanctions Screening
+  - id: counterparty-government-check-routing
+    name: Counterparty Government Check
+  - id: machine-evidence-catalog
+    name: Machine Evidence Catalog
+grade: near-conformant
+grade_basis: >-
+  Graded against A2A 1.0.0. capabilities is an OBJECT (streaming/pushNotifications)
+  and skills is an ARRAY -> both hard checks pass. protocolVersion IS present but
+  nested inside supportedInterfaces[] rather than at the top level, and the card
+  uses the newer supportedInterfaces[] transport block rather than the 1.0.0
+  top-level url + preferredTransport pair. No hard failure, so near-conformant.
+  The card is additionally JWS-signed (Ed25519) with a published JWKS, which is
+  stronger than most cards in the catalog.
+deviations:
+  - No top-level protocolVersion; it appears inside supportedInterfaces[].protocolVersion (1.0).
+  - Uses supportedInterfaces[] transport array instead of the A2A 1.0.0 top-level url + preferredTransport.
+  - No top-level preferredTransport (transport is declared per-interface as JSONRPC).

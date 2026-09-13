@@ -1,0 +1,27 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://proof.arakelproof.space/openapi.json (info.version),
+  /.well-known/discovery-status, /health, /terms
+name: ARAKEL Machine Evidence Network
+versioning:
+  scheme: semver
+  current_version: 0.10.2
+  api_path_version: v1
+  note: >-
+    info.version, x402 manifest, and agent card all report 0.10.2; the REST paths
+    are namespaced /v1/. No documented version-negotiation header.
+deprecation_policy:
+  documented: false
+  note: No deprecation policy, Sunset/Deprecation headers, or deprecated operations found.
+sla:
+  documented: false
+status_page:
+  documented: false
+  note: >-
+    No hosted status page. There is a live machine status surface —
+    /.well-known/discovery-status and /v1/coverage-status report source-adapter
+    health and observation coverage — but it is a data endpoint, not a StatusPage.
+health_check:
+  url: https://proof.arakelproof.space/health
+  status: 200

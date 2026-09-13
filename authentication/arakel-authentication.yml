@@ -1,0 +1,46 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://proof.arakelproof.space/openapi.json (no securitySchemes),
+  https://proof.arakelproof.space/.well-known/x402,
+  live HTTP 402 challenge on GET /v1/ofac-sanctions-screening,
+  https://proof.arakelproof.space/skill.md, /terms
+name: ARAKEL Machine Evidence Network
+model: payment-gated (x402)
+api_keys: false
+oauth2: false
+note: >-
+  There are no API keys, OAuth, or securitySchemes. Authentication is identity-free
+  and payment-based: free preflight/quote routes are open, and paid product routes
+  answer HTTP 402 with an x402 v2 payment challenge that the caller settles with a
+  signed on-chain USDC transfer. Possession of a funded, x402-capable wallet is the
+  only credential.
+schemes:
+  - type: x402
+    spec_version: 2
+    transport: HTTP 402 + payment-required header (base64url JSON) and payment-required response body
+    network: eip155:8453
+    network_name: Base
+    asset: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+    asset_name: USD Coin (USDC)
+    scheme: exact
+    pay_to: '0x3a2F36D61c9BB3b3ee72426e2B6b58d774605B5e'
+    max_timeout_seconds: 300
+    evidence:
+      url: https://proof.arakelproof.space/v1/ofac-sanctions-screening?q=OpenAI
+      http_status: 402
+      amount_atomic: '5000'
+      amount_usd: 0.005
+free_routes:
+  - /health
+  - /v1/coverage
+  - /v1/coverage-status
+  - /v1/quote
+  - /v1/machine/catalog
+  - /v1/machine/sources
+  - /v1/machine/sales-telemetry
+  - /v1/machine/quote
+  - /v1/machine/lookup-quote
+  - /v1/machine/counterparty-quote
+  - /v1/machine/counterparty-check-quote
+  - /v1/machine/batch-quote

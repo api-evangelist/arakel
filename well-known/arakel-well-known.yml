@@ -1,0 +1,44 @@
+generated: '2026-09-13'
+method: probed
+source: live probes of /.well-known/* on every host the record knows
+note: >-
+  The standard scored well-known documents (security.txt, openid-configuration,
+  oauth-authorization-server, api-catalog, ai-plugin.json) all 404 on this host.
+  However the provider DOES serve real machine documents under /.well-known/:
+  an A2A agent-card.json, an x402 service manifest, an Ed25519 JWKS, and a
+  discovery-status document. The WellKnown pointer is emitted on those real 200
+  hits; no SecurityTxt pointer (security.txt 404s). The agent-card is graded
+  separately as an AgentCard (see a2a/).
+hosts:
+  - host: proof.arakelproof.space
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: application/json
+        file: ../a2a/arakel-agent-card.json
+      - path: /.well-known/x402
+        status: 200
+        content_type: application/json
+        file: arakel-x402.json
+      - path: /.well-known/jwks.json
+        status: 200
+        content_type: application/json
+        file: arakel-jwks.json
+      - path: /.well-known/discovery-status
+        status: 200
+        content_type: application/json
+        file: arakel-discovery-status.json
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404

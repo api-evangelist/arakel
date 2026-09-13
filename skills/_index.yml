@@ -1,0 +1,12 @@
+generated: '2026-09-13'
+name: ARAKEL Machine Evidence Network — Agent Skills
+skills:
+  - file: arakel-skill.md
+    name: ARAKEL Machine Evidence Network (provider-published)
+    method: searched
+    source: https://proof.arakelproof.space/skill.md
+    note: Saved verbatim from the provider's published /skill.md.
+  - file: arakel-ofac-screening.md
+    name: OFAC sanctions & wallet screening (preflight-then-pay)
+    method: generated
+    source: grounded in openapi/arakel-openapi.json operationIds + conventions/errors

@@ -1,0 +1,58 @@
+generated: '2026-09-13'
+method: probed
+source: >-
+  tools/list against https://proof.arakelproof.space/mcp (JSON-RPC over
+  Streamable HTTP, text/event-stream). Endpoint documented in llms.txt,
+  skill.md, and the agent card.
+name: ARAKEL Machine Evidence Network
+deployment:
+  mode: remote
+  endpoint: https://proof.arakelproof.space/mcp
+  auth: none
+  auth_note: >-
+    tools/list and every exposed MCP tool are FREE preflight/quote tools and
+    need no auth. Paid product execution happens on the REST surface and is
+    gated by x402 payment (HTTP 402, USDC on Base), not by an MCP credential.
+  verified: probed
+transport: streamable-http
+x-evidence:
+  fetched: '2026-09-13'
+  method: tools/list
+  http_status: 200
+  content_type: text/event-stream
+  tool_count: 10
+tools:
+  - name: catalog
+    description: List free preflight and paid Federal Register evidence products
+  - name: coverage
+    description: Check observation coverage before buying a NOT_OBSERVED proof
+    required: [from, to]
+  - name: coverage_status
+    description: Inspect persistent autonomous observation status
+  - name: quote
+    description: Free Federal Register quote / preflight
+    required: [term, from, to]
+    properties: [term, from, to, product]
+  - name: discovery_status
+    description: Discovery/observation status
+  - name: machine_sources
+    description: List configured/enabled official source adapters
+  - name: machine_quote
+    description: Multi-source machine quote across enabled official sources
+    required: [source, from, to]
+    properties: [source, entity, event_type, term, from, to, product]
+  - name: counterparty_quote
+    description: Counterparty preflight quote across government sources
+    required: [entity, from, to]
+    properties: [entity, term, from, to]
+  - name: batch_quote
+    description: Batch preflight quote for multiple items
+    required: [items]
+  - name: machine_sales_telemetry
+    description: Aggregate x402 sales telemetry (non-PII)
+note: >-
+  The MCP surface exposes ONLY free preflight/quote/telemetry tools. The paid
+  evidence products (OFAC/FDA/USAspending/Federal Register lookups, signed
+  proofs, counterparty dossiers) are exercised over the REST API and paid via
+  x402; the MCP quote tools tell an agent whether a paid REST call is worth
+  making. See mcp/arakel-tool-crosswalk.yml.

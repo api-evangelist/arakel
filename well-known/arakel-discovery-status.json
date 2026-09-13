@@ -1,0 +1,53 @@
+{
+  "schema": "autonomous.discovery.status.v1",
+  "product": "arakel",
+  "title": "ARAKEL Machine Evidence Network",
+  "version": "0.10.2",
+  "at": "2026-09-13T14:45:08.342Z",
+  "public_base_url": "https://proof.arakelproof.space",
+  "local_health": {
+    "ok": true,
+    "status": 200
+  },
+  "public_health": {
+    "ok": true,
+    "status": 200
+  },
+  "files": {
+    "ok": true,
+    "content_hash": "ba78034a3594990f2cf4d539ffcf581c8f1dc14a24b5b163336df69be8ed2abf",
+    "changed": false
+  },
+  "mcp_registry": {
+    "enabled": true,
+    "ok": true,
+    "skipped": true,
+    "reason": "visible_and_unchanged",
+    "registry_visible": true,
+    "registry_check_ok": true
+  },
+  "indexnow": {
+    "enabled": true,
+    "skipped": true
+  },
+  "bazaar": {
+    "enabled": true,
+    "ok": true,
+    "visible": false,
+    "status": 200,
+    "pages_checked": 50,
+    "total": 28598,
+    "filtered_by_payto": true
+  },
+  "integrity": {
+    "fake_payments": false,
+    "fake_requests": false,
+    "fake_ratings": false
+  },
+  "security": {
+    "has_admin_token": false,
+    "has_wallet_private_key": false,
+    "has_app_signing_key": false,
+    "registry_key_scope": "discovery-agent-only"
+  }
+}

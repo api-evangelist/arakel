@@ -1,0 +1,40 @@
+generated: '2026-09-13'
+method: searched
+source: https://proof.arakelproof.space/pricing
+name: ARAKEL Machine Evidence Network
+model: pay-per-call (x402 / USDC on Base); no subscription tiers
+currency: USD
+settlement: USDC on Base (eip155:8453)
+plan_count: 0
+plan_count_note: >-
+  There are no subscription tiers or seat plans — pricing is strictly usage-based,
+  charged per call at the moment of use via an x402 HTTP 402 challenge. The live 402
+  challenge is authoritative for exact price. Products are listed below as per-call
+  prices, not recurring plans.
+products:
+  - name: Free preflight
+    price_usd: 0
+    note: quote / coverage / lookup-quote / sources / catalog / telemetry
+  - name: Official-source lookup (OFAC/FDA/USAspending/Federal Register)
+    price_usd: 0.005
+  - name: Quick check
+    price_usd: 0.005
+  - name: Verified machine check
+    price_usd: 0.01
+  - name: Batch quick check (up to 10)
+    price_usd: 0.025
+  - name: Counterparty government check
+    price_usd: 0.03
+  - name: Prove NOT_OBSERVED
+    price_usd: 0.03
+  - name: Change-since
+    price_usd: 0.03
+  - name: Signed proof
+    price_usd: 0.05
+  - name: Counterparty evidence dossier
+    price_usd: 0.10
+  - name: Evidence bundle
+    price_usd: 0.25
+billing_note: >-
+  "Charges only apply when evidence meets support criteria" — e.g. a NOT_OBSERVED
+  proof is billed only when ARAKEL can prove it from sufficient coverage.

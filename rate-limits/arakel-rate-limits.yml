@@ -1,0 +1,15 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://proof.arakelproof.space/pricing, /terms, and live response-header
+  inspection of GET /v1/machine/sources and the 402 challenge
+name: ARAKEL Machine Evidence Network
+limit_count: 0
+limit_count_note: >-
+  No published rate limits or quotas. The pricing page states none explicitly and
+  the terms have no rate-limit clause. Live responses on free routes carry no
+  RateLimit-* / X-RateLimit-* / Retry-After headers, and the 402 challenge on paid
+  routes carries none either. The economic throttle is the per-call x402 price
+  rather than a request-count limit; /terms prohibits disrupting service availability.
+observed_headers: []
+exhaustion_status: null

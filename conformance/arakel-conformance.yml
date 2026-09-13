@@ -1,0 +1,47 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://proof.arakelproof.space/.well-known/x402 (x402 v2 manifest + live 402
+  challenge), /.well-known/agent-card.json (A2A card), /.well-known/jwks.json
+  (Ed25519), /mcp (MCP tools/list)
+name: ARAKEL Machine Evidence Network
+conformance:
+  - id: x402
+    name: x402 agent payments (agent402 service manifest v1 / x402 v2)
+    conforms: true
+    evidence: >-
+      /.well-known/x402 serves spec "agent402-service-manifest/1"; a live HTTP 402
+      on a paid route returns an x402Version:2 payment-required challenge with
+      accepts[] {scheme:exact, network:eip155:8453, asset USDC, payTo, amount}.
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence: >-
+      POST /mcp method tools/list returns 200 (text/event-stream) with 10 tools
+      carrying JSON Schema 2020-12 inputSchemas.
+  - id: a2a
+    name: Agent2Agent (A2A 1.0.0)
+    conforms: false
+    grade: near-conformant
+    evidence: >-
+      /.well-known/agent-card.json is a JWS-signed AgentCard with a skills[] array
+      and a capabilities object, but protocolVersion is nested in
+      supportedInterfaces[] rather than top-level. See a2a/arakel-a2a.yml.
+  - id: jose-jws
+    name: Signed evidence (JOSE / JWS EdDSA)
+    conforms: true
+    evidence: >-
+      Evidence products and the agent card carry Ed25519 JWS signatures; keys
+      published at /.well-known/jwks.json (kid arakel-agentcard-ed25519-v1, OKP/Ed25519).
+domain_standard:
+  # x402 is the domain standard signature for the agent-native / machine-payments market.
+  standard: x402
+  detected: true
+  evidence: >-
+    /.well-known/x402 declares an agent402 service manifest and the paid surface
+    speaks x402 v2 over Base USDC (eip155:8453). An agent that already speaks x402
+    integrates with no bespoke payment connector.
+notes: >-
+  No FHIR/FAPI/PSD2/SCIM/OData/OpenRTB/etc. signatures — this is a government-data
+  evidence API, not a regulated-sector API surface. REWARD-ONLY: absence of those
+  is not a gap for this provider.

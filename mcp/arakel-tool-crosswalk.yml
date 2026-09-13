@@ -1,0 +1,168 @@
+generated: '2026-09-13'
+method: derived
+source: >-
+  Bound the live MCP tools/list (proof.arakelproof.space/mcp) and the x402
+  service manifest tools (/.well-known/x402) to OpenAPI operations
+  (proof.arakelproof.space/openapi.json). Live schemas were readable (MCP tools
+  and x402 inputSchemas are anonymous, no payment required), so bindings are high
+  confidence.
+surfaces:
+  openapi: openapi/arakel-openapi.json
+  mcp: https://proof.arakelproof.space/mcp
+  x402: https://proof.arakelproof.space/.well-known/x402
+  gated:
+    note: >-
+      MCP + x402 discovery/quote surfaces are anonymous. Paid REST execution
+      (the x402 tools below) requires an x402 payment (HTTP 402, USDC on Base);
+      the schema itself is public, only execution is payment-gated.
+crosswalk:
+  # x402 paid tools -> REST operations that carry operationIds
+  - tool: ofac-sanctions-screening
+    surface: x402
+    category: compliance
+    rest: [ofacSanctionsScreening]
+    binding: exact
+    confidence: high
+  - tool: ofac-wallet-screen
+    surface: x402
+    category: compliance
+    rest: [ofacWalletSanctionsScreen]
+    binding: exact
+    confidence: high
+  - tool: fda-drug-recalls
+    surface: x402
+    category: data
+    rest: [fdaDrugRecalls]
+    binding: exact
+    confidence: high
+  - tool: fda-food-recalls
+    surface: x402
+    category: data
+    rest: [fdaFoodRecalls]
+    binding: exact
+    confidence: high
+  - tool: fda-device-recalls
+    surface: x402
+    category: data
+    rest: [fdaMedicalDeviceRecalls]
+    binding: exact
+    confidence: high
+  - tool: federal-award-search
+    surface: x402
+    category: data
+    rest: [usFederalAwardsSearch]
+    binding: exact
+    confidence: high
+  - tool: federal-register-search
+    surface: x402
+    category: data
+    rest: [federalRegisterSearch]
+    binding: exact
+    confidence: high
+  - tool: counterparty-government-check
+    surface: x402
+    category: due-diligence
+    rest: [counterpartyGovernmentCheck]
+    binding: exact
+    confidence: high
+  # MCP free-preflight tools -> REST paths (these ops carry no operationId in the spec)
+  - tool: catalog
+    surface: mcp
+    category: discovery
+    rest_path: [GET /v1/machine/catalog]
+    binding: path
+    confidence: high
+    note: no operationId on this operation
+  - tool: coverage
+    surface: mcp
+    category: preflight
+    rest_path: [GET /v1/coverage]
+    binding: path
+    confidence: high
+    note: no operationId on this operation
+  - tool: coverage_status
+    surface: mcp
+    category: preflight
+    rest_path: [GET /v1/coverage-status]
+    binding: path
+    confidence: high
+    note: no operationId on this operation
+  - tool: quote
+    surface: mcp
+    category: preflight
+    rest_path: [GET /v1/quote]
+    binding: path
+    confidence: high
+    note: no operationId on this operation
+  - tool: machine_sources
+    surface: mcp
+    category: discovery
+    rest_path: [GET /v1/machine/sources]
+    binding: path
+    confidence: high
+  - tool: machine_quote
+    surface: mcp
+    category: preflight
+    rest_path: [GET /v1/machine/quote]
+    binding: path
+    confidence: high
+  - tool: counterparty_quote
+    surface: mcp
+    category: preflight
+    rest_path: [GET /v1/machine/counterparty-quote]
+    binding: path
+    confidence: high
+  - tool: batch_quote
+    surface: mcp
+    category: preflight
+    rest_path: [POST /v1/machine/batch-quote]
+    binding: path
+    confidence: high
+  - tool: machine_sales_telemetry
+    surface: mcp
+    category: telemetry
+    rest_path: [GET /v1/machine/sales-telemetry]
+    binding: path
+    confidence: high
+mcp_only:
+  - tool: discovery_status
+    reason: >-
+      Backed by /.well-known/discovery-status, which is served but not declared
+      as an OpenAPI operation.
+rest_only:
+  # Paid REST products with no MCP tool and no x402 manifest entry
+  - operationId: null
+    path: GET /v1/machine/quick-check
+    reason: paid execution route ($0.005); preflight is machine_quote/lookup-quote
+  - operationId: null
+    path: GET /v1/machine/check
+    reason: paid verified check ($0.01)
+  - operationId: null
+    path: GET /v1/machine/prove-not-observed
+    reason: paid NOT_OBSERVED proof ($0.03)
+  - operationId: null
+    path: GET /v1/machine/prove
+    reason: paid signed proof ($0.05)
+  - operationId: null
+    path: GET /v1/machine/counterparty-evidence
+    reason: paid counterparty dossier ($0.10)
+  - operationId: null
+    path: POST /v1/machine/batch-quick-check
+    reason: paid batch checks ($0.025)
+  - operationId: null
+    path: GET /v1/evidence-bundle
+    reason: paid evidence bundle ($0.25)
+  - operationId: null
+    path: GET /v1/certificate
+    reason: signed certificate retrieval
+  - operationId: null
+    path: GET /health
+    reason: liveness probe
+coverage:
+  x402_tools: 8
+  x402_tools_bound: 8
+  mcp_tools: 10
+  mcp_tools_bound: 9
+  mcp_only: 1
+  rest_operations_total: 28
+  rest_only: 9

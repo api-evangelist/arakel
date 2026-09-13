@@ -1,0 +1,54 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://proof.arakelproof.space/openapi.json, /llms.txt, /skill.md, /terms,
+  /.well-known/x402, live 402 challenge
+name: ARAKEL Machine Evidence Network
+auth_style: >-
+  Identity-free, payment-gated. Free preflight/quote routes are open; paid routes
+  answer HTTP 402 with an x402 v2 challenge settled by an on-chain USDC transfer.
+  See authentication/arakel-authentication.yml.
+preflight_then_pay:
+  description: >-
+    The defining convention. Before any paid call, an agent calls a free quote
+    route (/v1/machine/quote, /v1/machine/lookup-quote, /v1/machine/counterparty-quote,
+    /v1/quote, batch-quote). The quote returns payment_recommended and a predicted
+    verdict; agents are instructed NOT to pay when payment_recommended=false or the
+    predicted verdict is INCONCLUSIVE.
+verdicts:
+  values: [OBSERVED, NOT_OBSERVED, INCONCLUSIVE]
+  note: >-
+    NOT_OBSERVED does not assert a fact cannot exist outside the queried source,
+    time range, index, or coverage (stated in /terms).
+pagination:
+  style: capped-result-set
+  note: Source lookups return up to 10 matching official records; no cursor/offset paging documented.
+date_filtering:
+  params: [from, to]
+  format: RFC3339 date-time (UTC); many routes default the window to the last 1 day
+signed_evidence:
+  alg: EdDSA (Ed25519)
+  jwks: https://proof.arakelproof.space/.well-known/jwks.json
+  note: Paid evidence results carry a machine-verifiable JWS signature.
+error_envelope:
+  note: >-
+    JSON responses; the authoritative "not paid" signal is HTTP 402 with a
+    payment-required header (base64url JSON) and body. See errors/arakel-problem-types.yml.
+idempotency:
+  coverage: na
+  note: >-
+    The HTTP surface is read-only (GET evidence lookups plus POST batch-*quote
+    which are non-mutating quotes). No Idempotency-Key mechanism is documented and
+    none is needed for reads; the only state change is the on-chain x402 payment,
+    whose replay protection is the blockchain/x402 settlement layer, not an HTTP header.
+dry_run:
+  mode: native
+  note: >-
+    The free preflight/quote routes ARE a dry-run: they let an agent rehearse and
+    price a paid evidence call (and predict its verdict) before spending anything.
+reversibility:
+  na: true
+  note: >-
+    No write operations to reverse — evidence lookups are read-only. Payments settle
+    on-chain in USDC and are irreversible by design; the free-preflight convention is
+    the pre-commit safeguard rather than a post-hoc reversal.

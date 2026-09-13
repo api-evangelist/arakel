@@ -3,7 +3,7 @@ description: >-
   Pay-per-call, machine-readable evidence checked against enabled official U.S. government sources (OFAC, FDA,
   USAspending, Federal Register), sold to autonomous agents via the x402 payment protocol. Identity-free, payment-gated
   using USDC on Base.
-url: https://raw.githubusercontent.com/api-evangelist/arakel-machine-evidence-network/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/arakel/refs/heads/main/apis.yml
 created: '2026-09-13'
 modified: '2026-09-13'
 specificationVersion: '0.21'
@@ -50,19 +50,62 @@ apis:
     properties:
       - type: OpenAPI
         url: https://proof.arakelproof.space/openapi.json
+      - type: OpenAPI
+        url: openapi/arakel-openapi.json
       - type: Documentation
         url: https://proof.arakelproof.space/openapi.json
       - type: MCPServer
         url: https://proof.arakelproof.space/mcp
+      - type: MCPServer
+        url: mcp/arakel-mcp.yml
       - type: LLMsTxt
-        url: https://proof.arakelproof.space/llms.txt
+        url: llms/arakel-llms.txt
       - type: AgentSkill
-        url: https://proof.arakelproof.space/skill.md
+        url: skills/arakel-skill.md
+      - type: AgentSkill
+        url: skills/arakel-ofac-screening.md
+      - type: AgentCard
+        url: a2a/arakel-a2a.yml
+      - type: ToolCrosswalk
+        url: mcp/arakel-tool-crosswalk.yml
+      - type: Authentication
+        url: authentication/arakel-authentication.yml
+      - type: Conventions
+        url: conventions/arakel-conventions.yml
+      - type: ErrorCatalog
+        url: errors/arakel-problem-types.yml
+      - type: Lifecycle
+        url: lifecycle/arakel-lifecycle.yml
+      - type: Plans
+        url: plans/arakel-plans-pricing.yml
+      - type: RateLimits
+        url: rate-limits/arakel-rate-limits.yml
+      - type: Overlay
+        url: overlays/arakel-openapi-overlay.yaml
+      - type: Pricing
+        url: https://proof.arakelproof.space/pricing
+      - type: TermsOfService
+        url: https://proof.arakelproof.space/terms
 maintainers:
   - FN: ARAKEL
     url: https://proof.arakelproof.space
+    email: maxxxil@mail.ru
 generated:
   by: apis.io/add
   model: claude-opus-4-8
   confidence: 97
   at: '2026-09-13T11:37:16.649Z'
+common:
+- type: Website
+  url: https://proof.arakelproof.space
+- type: DomainSecurity
+  url: security/arakel-domain-security.yml
+- type: WellKnown
+  url: well-known/arakel-well-known.yml
+- type: Conformance
+  url: conformance/arakel-conformance.yml
+x-enrichment:
+  date: '2026-09-13'
+  status: enriched
+  pass: local-v3
+  artifacts_added: 22
