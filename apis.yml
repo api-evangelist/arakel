@@ -1,0 +1,68 @@
+name: ARAKEL Machine Evidence Network
+description: >-
+  Pay-per-call, machine-readable evidence checked against enabled official U.S. government sources (OFAC, FDA,
+  USAspending, Federal Register), sold to autonomous agents via the x402 payment protocol. Identity-free, payment-gated
+  using USDC on Base.
+url: https://raw.githubusercontent.com/api-evangelist/arakel-machine-evidence-network/refs/heads/main/apis.yml
+created: '2026-09-13'
+modified: '2026-09-13'
+specificationVersion: '0.21'
+tags:
+  - machine-evidence
+  - compliance
+  - sanctions-screening
+  - OFAC
+  - regulatory-monitoring
+  - government-data
+  - FDA-recalls
+  - federal-spending
+  - Federal-Register
+  - counterparty-due-diligence
+  - agent-native
+  - x402
+  - pay-per-call
+  - MCP
+  - A2A
+apis:
+  - name: ARAKEL Machine Evidence Network API
+    description: >-
+      REST API providing machine-readable evidence checks against official U.S. government sources, with free preflight
+      routes and x402/HTTP-402 payment-gated paid routes. Also exposes an MCP server, llms.txt, and a published agent
+      skill.
+    humanURL: https://proof.arakelproof.space
+    baseURL: https://proof.arakelproof.space
+    tags:
+      - machine-evidence
+      - compliance
+      - sanctions-screening
+      - OFAC
+      - regulatory-monitoring
+      - government-data
+      - FDA-recalls
+      - federal-spending
+      - Federal-Register
+      - counterparty-due-diligence
+      - agent-native
+      - x402
+      - pay-per-call
+      - MCP
+      - A2A
+    properties:
+      - type: OpenAPI
+        url: https://proof.arakelproof.space/openapi.json
+      - type: Documentation
+        url: https://proof.arakelproof.space/openapi.json
+      - type: MCPServer
+        url: https://proof.arakelproof.space/mcp
+      - type: LLMsTxt
+        url: https://proof.arakelproof.space/llms.txt
+      - type: AgentSkill
+        url: https://proof.arakelproof.space/skill.md
+maintainers:
+  - FN: ARAKEL
+    url: https://proof.arakelproof.space
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 97
+  at: '2026-09-13T11:37:16.649Z'
