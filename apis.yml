@@ -9,6 +9,22 @@ modified: '2026-09-13'
 specificationVersion: '0.21'
 tags:
   - machine-evidence
+  - Compliance
+  - Sanctions Screening
+  - OFAC
+  - Regulatory Monitoring
+  - Government Data
+  - FDA-recalls
+  - Federal Spending
+  - Federal Register
+  - counterparty-due-diligence
+  - agent-native
+  - x402
+  - pay-per-call
+  - MCP
+  - A2A
+tags_raw:
+  - machine-evidence
   - compliance
   - sanctions-screening
   - OFAC
@@ -24,68 +40,316 @@ tags:
   - MCP
   - A2A
 apis:
-  - name: ARAKEL Machine Evidence Network API
-    description: >-
-      REST API providing machine-readable evidence checks against official U.S. government sources, with free preflight
-      routes and x402/HTTP-402 payment-gated paid routes. Also exposes an MCP server, llms.txt, and a published agent
-      skill.
-    humanURL: https://proof.arakelproof.space
-    baseURL: https://proof.arakelproof.space
-    tags:
-      - machine-evidence
-      - compliance
-      - sanctions-screening
-      - OFAC
-      - regulatory-monitoring
-      - government-data
-      - FDA-recalls
-      - federal-spending
-      - Federal-Register
-      - counterparty-due-diligence
-      - agent-native
-      - x402
-      - pay-per-call
-      - MCP
-      - A2A
-    properties:
-      - type: OpenAPI
-        url: https://proof.arakelproof.space/openapi.json
-      - type: OpenAPI
-        url: openapi/arakel-openapi.json
-      - type: Documentation
-        url: https://proof.arakelproof.space/openapi.json
-      - type: MCPServer
-        url: https://proof.arakelproof.space/mcp
-      - type: MCPServer
-        url: mcp/arakel-mcp.yml
-      - type: LLMsTxt
-        url: llms/arakel-llms.txt
-      - type: AgentSkill
-        url: skills/arakel-skill.md
-      - type: AgentSkill
-        url: skills/arakel-ofac-screening.md
-      - type: AgentCard
-        url: a2a/arakel-a2a.yml
-      - type: ToolCrosswalk
-        url: mcp/arakel-tool-crosswalk.yml
-      - type: Authentication
-        url: authentication/arakel-authentication.yml
-      - type: Conventions
-        url: conventions/arakel-conventions.yml
-      - type: ErrorCatalog
-        url: errors/arakel-problem-types.yml
-      - type: Lifecycle
-        url: lifecycle/arakel-lifecycle.yml
-      - type: Plans
-        url: plans/arakel-plans-pricing.yml
-      - type: RateLimits
-        url: rate-limits/arakel-rate-limits.yml
-      - type: Overlay
-        url: overlays/arakel-openapi-overlay.yaml
-      - type: Pricing
-        url: https://proof.arakelproof.space/pricing
-      - type: TermsOfService
-        url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-certificate-api
+  name: ARAKEL Machine Evidence Network Certificate API
+  description: >-
+    The Certificate API from ARAKEL Machine Evidence Network — 1 operation(s) for certificate.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - Certificate
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-certificate-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-coverage-api
+  name: ARAKEL Machine Evidence Network Coverage API
+  description: The Coverage API from ARAKEL Machine Evidence Network — 1 operation(s) for coverage.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - Coverage
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-coverage-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-coverage-status-api
+  name: ARAKEL Machine Evidence Network Coverage Status API
+  description: >-
+    The Coverage Status API from ARAKEL Machine Evidence Network — 1 operation(s) for coverage status.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - Coverage Status
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-coverage-status-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-crypto-api
+  name: ARAKEL Machine Evidence Network Crypto API
+  description: The crypto API from ARAKEL Machine Evidence Network — 1 operation(s) for crypto.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - crypto
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-crypto-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-evidence-bundle-api
+  name: ARAKEL Machine Evidence Network Evidence Bundle API
+  description: >-
+    The Evidence Bundle API from ARAKEL Machine Evidence Network — 1 operation(s) for evidence bundle.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - Evidence Bundle
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-evidence-bundle-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-government-data-api
+  name: ARAKEL Machine Evidence Network Government Data API
+  description: >-
+    The government-data API from ARAKEL Machine Evidence Network — 7 operation(s) for government-data.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - government-data
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-government-data-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-health-api
+  name: ARAKEL Machine Evidence Network Health API
+  description: The Health API from ARAKEL Machine Evidence Network — 1 operation(s) for health.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-health-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-machine-api
+  name: ARAKEL Machine Evidence Network Machine API
+  description: The Machine API from ARAKEL Machine Evidence Network — 14 operation(s) for machine.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - Machine
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-machine-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
+- aid: arakel:arakel-quote-api
+  name: ARAKEL Machine Evidence Network Quote API
+  description: The Quote API from ARAKEL Machine Evidence Network — 1 operation(s) for quote.
+  humanURL: https://proof.arakelproof.space
+  baseURL: https://proof.arakelproof.space
+  tags:
+  - Quote
+  properties:
+  - type: OpenAPI
+    url: openapi/arakel-quote-api-openapi.yml
+  - type: Documentation
+    url: https://proof.arakelproof.space/openapi.json
+  - type: LLMsTxt
+    url: llms/arakel-llms.txt
+  - type: AgentCard
+    url: a2a/arakel-a2a.yml
+  - type: ToolCrosswalk
+    url: mcp/arakel-tool-crosswalk.yml
+  - type: Authentication
+    url: authentication/arakel-authentication.yml
+  - type: Conventions
+    url: conventions/arakel-conventions.yml
+  - type: ErrorCatalog
+    url: errors/arakel-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/arakel-lifecycle.yml
+  - type: Plans
+    url: plans/arakel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arakel-rate-limits.yml
+  - type: Pricing
+    url: https://proof.arakelproof.space/pricing
+  - type: TermsOfService
+    url: https://proof.arakelproof.space/terms
 maintainers:
   - FN: ARAKEL
     url: https://proof.arakelproof.space
@@ -96,6 +360,16 @@ generated:
   confidence: 97
   at: '2026-09-13T11:37:16.649Z'
 common:
+- type: MCPServer
+  url: https://proof.arakelproof.space/mcp
+- type: MCPServer
+  url: mcp/arakel-mcp.yml
+- type: AgentSkill
+  url: skills/arakel-skill.md
+- type: AgentSkill
+  url: skills/arakel-ofac-screening.md
+- type: Overlay
+  url: overlays/arakel-openapi-overlay.yaml
 - type: Website
   url: https://proof.arakelproof.space
 - type: DomainSecurity
