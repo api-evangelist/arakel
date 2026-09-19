@@ -150,6 +150,8 @@ apis:
   humanURL: https://proof.arakelproof.space
   baseURL: https://proof.arakelproof.space
   tags:
+  - Crypto
+  tags_raw:
   - crypto
   properties:
   - type: OpenAPI
@@ -220,6 +222,8 @@ apis:
   humanURL: https://proof.arakelproof.space
   baseURL: https://proof.arakelproof.space
   tags:
+  - Government Data
+  tags_raw:
   - government-data
   properties:
   - type: OpenAPI
@@ -322,6 +326,8 @@ apis:
   humanURL: https://proof.arakelproof.space
   baseURL: https://proof.arakelproof.space
   tags:
+  - Quotes
+  tags_raw:
   - Quote
   properties:
   - type: OpenAPI
