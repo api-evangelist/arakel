@@ -1,0 +1,26 @@
+openapi: 3.2.0
+info:
+  title: ARAKEL Machine Evidence Network Coverage Status API
+  version: 0.10.2
+  contact:
+    url: https://proof.arakelproof.space
+    email: maxxxil@mail.ru
+  description: Machine evidence with free preflight, $0.005 quick checks, NOT_OBSERVED proofs, batch checks, and counterparty dossiers across enabled official sources.
+  x-guidance: For crypto wallet sanctions screening, first use the free /v1/machine/lookup-quote endpoint with type=ofac-wallet and q set to the destination wallet address; if payment_recommended is true, call /v1/ofac-wallet-screen for $0.005. For simple OFAC, FDA, USAspending federal-award, or Federal Register lookups, first use the free /v1/machine/lookup-quote endpoint with type and q. If payment_recommended is true, call the returned lookup_path; these buyer-intent lookups normally cost $0.005 via x402. Use /v1/machine/quote for advanced source-specific checks, signed proofs, NOT_OBSERVED proofs, change detection, or bundles. Never pay when a free preflight returns payment_recommended=false or predicts INCONCLUSIVE.
+servers:
+- url: https://proof.arakelproof.space
+tags:
+- name: Coverage Status
+paths:
+  /v1/coverage-status:
+    get:
+      security: []
+      responses:
+        '200':
+          description: Persistent autonomous coverage continuity and failure statistics
+      tags:
+      - Coverage Status
+      summary: Get coverage status
+      x-summary-source: derived
+      operationId: getV1CoverageStatus
+      x-operation-id-source: derived

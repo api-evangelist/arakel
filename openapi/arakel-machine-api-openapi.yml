@@ -1,0 +1,594 @@
+openapi: 3.2.0
+info:
+  title: ARAKEL Evidence Network Machine API
+  version: 0.10.2
+  contact:
+    url: https://proof.arakelproof.space
+    email: maxxxil@mail.ru
+  description: Machine evidence with free preflight, $0.005 quick checks, NOT_OBSERVED proofs, batch checks, and counterparty dossiers across enabled official sources.
+  x-guidance: For crypto wallet sanctions screening, first use the free /v1/machine/lookup-quote endpoint with type=ofac-wallet and q set to the destination wallet address; if payment_recommended is true, call /v1/ofac-wallet-screen for $0.005. For simple OFAC, FDA, USAspending federal-award, or Federal Register lookups, first use the free /v1/machine/lookup-quote endpoint with type and q. If payment_recommended is true, call the returned lookup_path; these buyer-intent lookups normally cost $0.005 via x402. Use /v1/machine/quote for advanced source-specific checks, signed proofs, NOT_OBSERVED proofs, change detection, or bundles. Never pay when a free preflight returns payment_recommended=false or predicts INCONCLUSIVE.
+servers:
+- url: https://proof.arakelproof.space
+tags:
+- name: Machine
+paths:
+  /v1/machine/catalog:
+    get:
+      security: []
+      responses:
+        '200':
+          description: Machine sales product catalog
+      tags:
+      - Machine
+      summary: Get machine catalog
+      x-summary-source: derived
+      operationId: getV1MachineCatalog
+      x-operation-id-source: derived
+  /v1/machine/sources:
+    get:
+      security: []
+      responses:
+        '200':
+          description: Official source adapter status
+      tags:
+      - Machine
+      summary: Get machine sources
+      x-summary-source: derived
+      operationId: getV1MachineSources
+      x-operation-id-source: derived
+  /v1/machine/sales-telemetry:
+    get:
+      security: []
+      responses:
+        '200':
+          description: Aggregate commercial funnel telemetry
+      tags:
+      - Machine
+      summary: Get machine sales telemetry
+      x-summary-source: derived
+      operationId: getV1MachineSalesTelemetry
+      x-operation-id-source: derived
+  /v1/machine/quote:
+    get:
+      security: []
+      responses:
+        '200':
+          description: Free multi-source payment recommendation
+      tags:
+      - Machine
+      summary: Get machine quote
+      x-summary-source: derived
+      operationId: getV1MachineQuote
+      x-operation-id-source: derived
+  /v1/machine/lookup-quote:
+    get:
+      security: []
+      parameters:
+      - name: type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ofac-sanctions
+          - ofac-wallet
+          - fda-drug
+          - fda-food
+          - fda-device
+          - federal-award
+          - federal-register
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Search name or term
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Free buyer-intent lookup preflight
+      tags:
+      - Machine
+      summary: Get machine lookup quote
+      x-summary-source: derived
+      operationId: getV1MachineLookupQuote
+      x-operation-id-source: derived
+  /v1/machine/counterparty-quote:
+    get:
+      security: []
+      responses:
+        '200':
+          description: Free counterparty dossier preflight
+      tags:
+      - Machine
+      summary: Get machine counterparty quote
+      x-summary-source: derived
+      operationId: getV1MachineCounterpartyQuote
+      x-operation-id-source: derived
+  /v1/machine/counterparty-check-quote:
+    get:
+      security: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Search name or term
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Free compact counterparty government-check preflight
+      tags:
+      - Machine
+      summary: Get machine counterparty check quote
+      x-summary-source: derived
+      operationId: getV1MachineCounterpartyCheckQuote
+      x-operation-id-source: derived
+  /v1/machine/batch-quote:
+    post:
+      security: []
+      responses:
+        '200':
+          description: Free preflight for 2-10 batch quick checks
+      tags:
+      - Machine
+      summary: Create machine batch quote
+      x-summary-source: derived
+      operationId: postV1MachineBatchQuote
+      x-operation-id-source: derived
+  /v1/machine/quick-check:
+    get:
+      x-payment-info:
+        price:
+          mode: fixed
+          currency: USD
+          amount: '0.005'
+        protocols:
+        - x402: {}
+      parameters:
+      - name: source
+        in: query
+        required: true
+        example: ofac
+        schema:
+          type: string
+          enum:
+          - ofac
+          default: ofac
+          example: ofac
+      - name: entity
+        in: query
+        required: true
+        example: '0xcB74874f1e06Fcf80A306e06e5379A44B488bA2D'
+        schema:
+          type: string
+          default: '0xcB74874f1e06Fcf80A306e06e5379A44B488bA2D'
+          example: '0xcB74874f1e06Fcf80A306e06e5379A44B488bA2D'
+      - name: event_type
+        in: query
+        required: true
+        example: listing_present
+        schema:
+          type: string
+          default: listing_present
+          example: listing_present
+      - name: term
+        in: query
+        required: false
+        example: ''
+        schema:
+          type: string
+          default: ''
+      - name: from
+        in: query
+        required: true
+        example: '2026-09-04T12:13:58.567Z'
+        schema:
+          type: string
+          format: date-time
+          default: '2026-09-04T12:13:58.567Z'
+          example: '2026-09-04T12:13:58.567Z'
+      - name: to
+        in: query
+        required: true
+        example: '2026-09-05T12:13:58.567Z'
+        schema:
+          type: string
+          format: date-time
+          default: '2026-09-05T12:13:58.567Z'
+          example: '2026-09-05T12:13:58.567Z'
+      responses:
+        '200':
+          description: Signed concise official-source verdict
+        '402':
+          description: Payment Required
+        '409':
+          description: Payment not recommended
+      tags:
+      - Machine
+      summary: Get machine quick check
+      x-summary-source: derived
+      operationId: getV1MachineQuickCheck
+      x-operation-id-source: derived
+  /v1/machine/check:
+    get:
+      x-payment-info:
+        price:
+          mode: fixed
+          currency: USD
+          amount: '0.01'
+        protocols:
+        - x402: {}
+      parameters:
+      - name: source
+        in: query
+        required: true
+        example: usaspending
+        schema:
+          type: string
+          enum:
+          - federal-register
+          - sec
+          - ofac
+          - fda
+          - usaspending
+          - sam
+          example: usaspending
+      - name: entity
+        in: query
+        required: true
+        example: Boeing
+        schema:
+          type: string
+          example: Boeing
+      - name: event_type
+        in: query
+        required: true
+        example: award
+        schema:
+          type: string
+          example: award
+      - name: term
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        required: true
+        example: '2025-09-03T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+          example: '2025-09-03T00:00:00Z'
+      - name: to
+        in: query
+        required: true
+        example: '2026-09-03T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+          example: '2026-09-03T00:00:00Z'
+      responses:
+        '200':
+          description: Signed verified official-source check
+        '402':
+          description: Payment Required
+        '409':
+          description: Payment not recommended
+      tags:
+      - Machine
+      summary: Get machine check
+      x-summary-source: derived
+      operationId: getV1MachineCheck
+      x-operation-id-source: derived
+  /v1/machine/prove-not-observed:
+    get:
+      x-payment-info:
+        price:
+          mode: fixed
+          currency: USD
+          amount: '0.03'
+        protocols:
+        - x402: {}
+      parameters:
+      - name: source
+        in: query
+        required: true
+        example: ofac
+        schema:
+          type: string
+          enum:
+          - federal-register
+          - sec
+          - ofac
+          - fda
+          - usaspending
+          - sam
+          example: ofac
+      - name: entity
+        in: query
+        required: true
+        example: ARAKEL-X402SCAN-NONMATCH-9F7C2A
+        schema:
+          type: string
+          example: ARAKEL-X402SCAN-NONMATCH-9F7C2A
+      - name: event_type
+        in: query
+        required: true
+        example: listing_present
+        schema:
+          type: string
+          example: listing_present
+      - name: from
+        in: query
+        required: true
+        example: '2026-09-03T12:00:00Z'
+        schema:
+          type: string
+          format: date-time
+          example: '2026-09-03T12:00:00Z'
+      - name: to
+        in: query
+        required: true
+        example: '2026-09-03T13:00:00Z'
+        schema:
+          type: string
+          format: date-time
+          example: '2026-09-03T13:00:00Z'
+      responses:
+        '200':
+          description: Signed NOT_OBSERVED proof
+        '402':
+          description: Payment Required
+        '409':
+          description: NOT_OBSERVED is not currently provable
+      tags:
+      - Machine
+      summary: Get machine prove not observed
+      x-summary-source: derived
+      operationId: getV1MachineProveNotObserved
+      x-operation-id-source: derived
+  /v1/machine/prove:
+    get:
+      x-payment-info:
+        price:
+          mode: fixed
+          currency: USD
+          amount: '0.05'
+        protocols:
+        - x402: {}
+      parameters:
+      - name: source
+        in: query
+        required: true
+        example: usaspending
+        schema:
+          type: string
+          enum:
+          - federal-register
+          - sec
+          - ofac
+          - fda
+          - usaspending
+          - sam
+          example: usaspending
+      - name: entity
+        in: query
+        required: true
+        example: Boeing
+        schema:
+          type: string
+          example: Boeing
+      - name: event_type
+        in: query
+        required: true
+        example: award
+        schema:
+          type: string
+          example: award
+      - name: term
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        required: true
+        example: '2025-09-03T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+          example: '2025-09-03T00:00:00Z'
+      - name: to
+        in: query
+        required: true
+        example: '2026-09-03T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+          example: '2026-09-03T00:00:00Z'
+      responses:
+        '200':
+          description: Signed multi-source proof
+        '402':
+          description: Payment Required
+        '409':
+          description: Payment not recommended
+      tags:
+      - Machine
+      summary: Get machine prove
+      x-summary-source: derived
+      operationId: getV1MachineProve
+      x-operation-id-source: derived
+  /v1/machine/counterparty-evidence:
+    get:
+      x-payment-info:
+        price:
+          mode: fixed
+          currency: USD
+          amount: '0.10'
+        protocols:
+        - x402: {}
+      parameters:
+      - name: entity
+        in: query
+        required: true
+        example: Boeing
+        schema:
+          type: string
+          default: Boeing
+          example: Boeing
+      - name: term
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: from
+        in: query
+        required: true
+        example: '2025-09-03T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+          default: '2025-09-03T00:00:00Z'
+          example: '2025-09-03T00:00:00Z'
+      - name: to
+        in: query
+        required: true
+        example: '2026-09-03T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+          default: '2026-09-03T00:00:00Z'
+          example: '2026-09-03T00:00:00Z'
+      responses:
+        '200':
+          description: Signed multi-source counterparty dossier
+        '402':
+          description: Payment Required
+        '409':
+          description: Payment not recommended
+      tags:
+      - Machine
+      summary: Get machine counterparty evidence
+      x-summary-source: derived
+      operationId: getV1MachineCounterpartyEvidence
+      x-operation-id-source: derived
+  /v1/machine/batch-quick-check:
+    post:
+      x-payment-info:
+        price:
+          mode: fixed
+          currency: USD
+          amount: '0.025'
+        protocols:
+        - x402: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  minItems: 2
+                  maxItems: 10
+                  items:
+                    type: object
+                    properties:
+                      source:
+                        type: string
+                        default: ofac
+                        example: ofac
+                      entity:
+                        type: string
+                        default: ARAKEL-X402SCAN-NONMATCH-9F7C2A
+                        example: ARAKEL-X402SCAN-NONMATCH-9F7C2A
+                      event_type:
+                        type: string
+                        default: listing_present
+                        example: listing_present
+                      term:
+                        type: string
+                        default: ''
+                      from:
+                        type: string
+                        format: date-time
+                        default: '2026-09-03T12:00:00Z'
+                        example: '2026-09-03T12:00:00Z'
+                      to:
+                        type: string
+                        format: date-time
+                        default: '2026-09-03T13:00:00Z'
+                        example: '2026-09-03T13:00:00Z'
+                    required:
+                    - source
+                    - entity
+                    - event_type
+                    - from
+                    - to
+              required:
+              - items
+              default:
+                items:
+                - source: ofac
+                  entity: ARAKEL-X402SCAN-NONMATCH-9F7C2A
+                  event_type: listing_present
+                  from: '2026-09-03T12:00:00Z'
+                  to: '2026-09-03T13:00:00Z'
+                - source: ofac
+                  entity: ARAKEL-X402SCAN-NONMATCH-9F7C2A
+                  event_type: listing_present
+                  from: '2026-09-03T12:00:00Z'
+                  to: '2026-09-03T13:00:00Z'
+              example:
+                items:
+                - source: ofac
+                  entity: ARAKEL-X402SCAN-NONMATCH-9F7C2A
+                  event_type: listing_present
+                  from: '2026-09-03T12:00:00Z'
+                  to: '2026-09-03T13:00:00Z'
+                - source: ofac
+                  entity: ARAKEL-X402SCAN-NONMATCH-9F7C2A
+                  event_type: listing_present
+                  from: '2026-09-03T12:00:00Z'
+                  to: '2026-09-03T13:00:00Z'
+      responses:
+        '200':
+          description: Signed 2-10 item quick-check batch
+        '402':
+          description: Payment Required
+        '409':
+          description: One or more items are inconclusive
+      tags:
+      - Machine
+      summary: Create machine batch quick check
+      x-summary-source: derived
+      operationId: postV1MachineBatchQuickCheck
+      x-operation-id-source: derived

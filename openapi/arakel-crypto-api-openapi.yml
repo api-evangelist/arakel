@@ -1,0 +1,59 @@
+openapi: 3.2.0
+info:
+  title: ARAKEL Machine Evidence Network Crypto API
+  version: 0.10.2
+  contact:
+    url: https://proof.arakelproof.space
+    email: maxxxil@mail.ru
+  description: Machine evidence with free preflight, $0.005 quick checks, NOT_OBSERVED proofs, batch checks, and counterparty dossiers across enabled official sources.
+  x-guidance: For crypto wallet sanctions screening, first use the free /v1/machine/lookup-quote endpoint with type=ofac-wallet and q set to the destination wallet address; if payment_recommended is true, call /v1/ofac-wallet-screen for $0.005. For simple OFAC, FDA, USAspending federal-award, or Federal Register lookups, first use the free /v1/machine/lookup-quote endpoint with type and q. If payment_recommended is true, call the returned lookup_path; these buyer-intent lookups normally cost $0.005 via x402. Use /v1/machine/quote for advanced source-specific checks, signed proofs, NOT_OBSERVED proofs, change detection, or bundles. Never pay when a free preflight returns payment_recommended=false or predicts INCONCLUSIVE.
+servers:
+- url: https://proof.arakelproof.space
+tags:
+- name: Crypto
+paths:
+  /v1/ofac-wallet-screen:
+    get:
+      x-payment-info:
+        price:
+          mode: fixed
+          currency: USD
+          amount: '0.005'
+        protocols:
+        - x402: {}
+      operationId: ofacWalletSanctionsScreen
+      summary: OFAC wallet sanctions screen
+      description: Screen a destination crypto wallet address against official U.S. Treasury OFAC sanctions data before sending funds. Returns matching official records and a signed ARAKEL verdict.
+      tags:
+      - Crypto
+      x-price: $0.005
+      x-x402-price: $0.005
+      parameters:
+      - name: q
+        in: query
+        required: true
+        example: '0xcB74874f1e06Fcf80A306e06e5379A44B488bA2D'
+        description: Destination crypto wallet address to screen against official OFAC sanctions data
+        schema:
+          type: string
+          default: '0xcB74874f1e06Fcf80A306e06e5379A44B488bA2D'
+          example: '0xcB74874f1e06Fcf80A306e06e5379A44B488bA2D'
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OFAC wallet sanctions screening with matching official records
+        '402':
+          description: Payment Required
+        '409':
+          description: Payment not recommended

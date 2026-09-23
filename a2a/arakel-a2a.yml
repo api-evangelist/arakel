@@ -32,7 +32,10 @@ skills:
     name: Counterparty Government Check
   - id: machine-evidence-catalog
     name: Machine Evidence Catalog
-grade: near-conformant
+card:
+  file: a2a/arakel-agent-card.json
+conformance:
+  grade: near-conformant
 grade_basis: >-
   Graded against A2A 1.0.0. capabilities is an OBJECT (streaming/pushNotifications)
   and skills is an ARRAY -> both hard checks pass. protocolVersion IS present but
