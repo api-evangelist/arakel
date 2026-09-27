@@ -18,7 +18,7 @@ tags:
   - Federal Spending
   - Federal Register
   - counterparty-due-diligence
-  - agent-native
+  - Agent-Native
   - x402
   - pay-per-call
   - MCP
@@ -45,7 +45,6 @@ apis:
   description: >-
     The Certificate API from ARAKEL Machine Evidence Network — 1 operation(s) for certificate.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Certificate
   properties:
@@ -79,7 +78,6 @@ apis:
   name: ARAKEL Machine Evidence Network Coverage API
   description: The Coverage API from ARAKEL Machine Evidence Network — 1 operation(s) for coverage.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Coverage
   properties:
@@ -114,7 +112,6 @@ apis:
   description: >-
     The Coverage Status API from ARAKEL Machine Evidence Network — 1 operation(s) for coverage status.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Coverage Status
   properties:
@@ -148,7 +145,6 @@ apis:
   name: ARAKEL Machine Evidence Network Crypto API
   description: The crypto API from ARAKEL Machine Evidence Network — 1 operation(s) for crypto.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Crypto
   tags_raw:
@@ -185,7 +181,6 @@ apis:
   description: >-
     The Evidence Bundle API from ARAKEL Machine Evidence Network — 1 operation(s) for evidence bundle.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Evidence Bundle
   properties:
@@ -220,7 +215,6 @@ apis:
   description: >-
     The government-data API from ARAKEL Machine Evidence Network — 7 operation(s) for government-data.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Government Data
   tags_raw:
@@ -256,7 +250,6 @@ apis:
   name: ARAKEL Machine Evidence Network Health API
   description: The Health API from ARAKEL Machine Evidence Network — 1 operation(s) for health.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Health
   properties:
@@ -290,7 +283,6 @@ apis:
   name: ARAKEL Machine Evidence Network Machine API
   description: The Machine API from ARAKEL Machine Evidence Network — 14 operation(s) for machine.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Machine
   properties:
@@ -324,7 +316,6 @@ apis:
   name: ARAKEL Machine Evidence Network Quote API
   description: The Quote API from ARAKEL Machine Evidence Network — 1 operation(s) for quote.
   humanURL: https://proof.arakelproof.space
-  baseURL: https://proof.arakelproof.space
   tags:
   - Quotes
   tags_raw:
@@ -389,3 +380,12 @@ x-enrichment:
   status: enriched
   pass: local-v3
   artifacts_added: 22
+x-x402:
+  verified: true
+  probed: '2026-09-24'
+  url: "https://proof.arakelproof.space/v1/certificate"
+  evidence:
+  - "header:payment-required"
+  - "body:x402Version"
+  - "body:accepts[scheme,payTo,asset]"
+  control: 404
