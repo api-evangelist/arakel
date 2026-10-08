@@ -357,6 +357,10 @@ generated:
   confidence: 97
   at: '2026-09-13T11:37:16.649Z'
 common:
+- type: Plans
+  url: plans/arakel-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/arakel-rate-limits.yml
 - type: MCPServer
   url: https://proof.arakelproof.space/mcp
 - type: MCPServer
