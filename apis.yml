@@ -146,7 +146,7 @@ apis:
   description: The crypto API from ARAKEL Machine Evidence Network — 1 operation(s) for crypto.
   humanURL: https://proof.arakelproof.space
   tags:
-  - Crypto
+  - Cryptocurrency
   tags_raw:
   - crypto
   properties:
